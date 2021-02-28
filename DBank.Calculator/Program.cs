@@ -1,12 +1,13 @@
 ﻿using DBank.Calculator.DTO;
+using DBank.Calculator.Strategies.AdministrationFee;
+using DBank.Calculator.Strategies.LoanCalculation;
+using DBank.Calculator.Strategies.Report;
 using DBank.Calculator.Validators;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using DBank.Calculator.Strategies.AdministrationFee;
-using DBank.Calculator.Strategies.LoanCalculation;
-using DBank.Calculator.Strategies.Report;
 
 namespace DBank.Calculator
 {
@@ -23,9 +24,9 @@ namespace DBank.Calculator
             }
 
             var calculator = new LoanCalculator(
-                new StandardLoanLoanCalculation(Capitalization.Monthly, 0.05),
+                new StandardLoanCalculation(Capitalization.Monthly, 0.05),
                 new StandardAdministrationFee(),
-                new StandardLoanLoanReport(),
+                new StandardLoanReport(new CultureInfo("da-DK")),
                 decimal.Parse(Arguments.Loan),
                 int.Parse(Arguments.Duration)
                 );

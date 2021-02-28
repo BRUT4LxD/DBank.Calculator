@@ -2,12 +2,12 @@
 
 namespace DBank.Calculator.Strategies.LoanCalculation
 {
-    internal class StandardLoanLoanCalculation : ILoanCalculationStrategy
+    internal class StandardLoanCalculation : ILoanCalculationStrategy
     {
         private readonly Capitalization _capitalization;
         private readonly double _interestRate;
 
-        public StandardLoanLoanCalculation(Capitalization capitalization, double interestRate)
+        public StandardLoanCalculation(Capitalization capitalization, double interestRate)
         {
             _capitalization = capitalization;
             _interestRate = interestRate;
