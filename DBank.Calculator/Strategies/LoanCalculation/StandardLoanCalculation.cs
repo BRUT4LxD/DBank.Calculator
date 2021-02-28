@@ -28,8 +28,6 @@ namespace DBank.Calculator.Strategies.LoanCalculation
 
             var r = amount * a * b / c;
 
-            Console.WriteLine("To return: " + r * overallInstallments);
-
             return r * overallInstallments;
         }
     }

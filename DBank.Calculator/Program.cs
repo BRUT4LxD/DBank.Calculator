@@ -40,7 +40,7 @@ namespace DBank.Calculator
         private static void LoadConfig()
         {
             _capitalization = CapitalizationExtension.GetCapitalizationByName(ConfigurationManager.AppSettings.Get("Capitalization"));
-            _interestRate = double.Parse(ConfigurationManager.AppSettings.Get("InterestRate"));
+            _interestRate = double.Parse(ConfigurationManager.AppSettings.Get("InterestRate"), CultureInfo.InvariantCulture);
         }
 
         private static IMapper RegisterMappers()
