@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DBank.Calculator.DTO;
+using DBank.Calculator.Extensions;
 using DBank.Calculator.Model;
 using DBank.Calculator.Strategies.AdministrationFee;
 using DBank.Calculator.Strategies.LoanCalculation;
@@ -11,7 +12,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
-using DBank.Calculator.Extensions;
 
 namespace DBank.Calculator
 {
