@@ -12,9 +12,9 @@ namespace DBank.Calculator.Strategies.Report
             _cultureInfo = cultureInfo;
         }
 
-        public void PrintReport(decimal loan, int years, decimal administrationFee)
+        public void PrintReport(decimal loanAmount, int loanYears, decimal administrationFee)
         {
-            var monthlyInstallment = loan / (years * Constants.NumberOfMonthsInYear);
+            var monthlyInstallment = loanAmount / (loanYears * Constants.NumberOfMonthsInYear);
             Console.WriteLine("Loan: " + monthlyInstallment.ToString("C", _cultureInfo));
             Console.WriteLine("Administration fee: " + administrationFee);
         }

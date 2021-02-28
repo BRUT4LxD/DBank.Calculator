@@ -9,8 +9,8 @@ namespace DBank.Calculator.Mappers
         public LoanMapper()
         {
             CreateMap<Arguments, Loan>()
-                .ForMember(dest => dest.LoanAmount, y => y.MapFrom(src => decimal.Parse(src.Loan)))
-                .ForMember(dest => dest.Duration, y => y.MapFrom(src => int.Parse(src.Duration)));
+                .ForMember(dest => dest.Amount, y => y.MapFrom(src => decimal.Parse(src.Loan)))
+                .ForMember(dest => dest.Duration, y => y.MapFrom(src => int.Parse(src.Years)));
         }
     }
 }

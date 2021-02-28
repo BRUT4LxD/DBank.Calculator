@@ -1,4 +1,5 @@
-﻿using DBank.Calculator.Strategies.AdministrationFee;
+﻿using DBank.Calculator.Model;
+using DBank.Calculator.Strategies.AdministrationFee;
 using DBank.Calculator.Strategies.LoanCalculation;
 using DBank.Calculator.Strategies.Report;
 
@@ -9,28 +10,27 @@ namespace DBank.Calculator
         private readonly ILoanCalculationStrategy _loanCalculationStrategy;
         private readonly IAdministrationFeeStrategy _administrationFeeStrategy;
         private readonly ILoanReportStrategy _loanReportStrategy;
-        private readonly decimal _value;
-        private readonly int _duration;
+        private readonly decimal _loanAmount;
+        private readonly int _loanDuration;
 
         public LoanCalculator(
             ILoanCalculationStrategy loanCalculationStrategy,
             IAdministrationFeeStrategy administrationFeeStrategy,
             ILoanReportStrategy loanReportStrategy,
-            decimal value,
-            int duration)
+            Loan loan)
         {
             _loanCalculationStrategy = loanCalculationStrategy;
             _administrationFeeStrategy = administrationFeeStrategy;
             _loanReportStrategy = loanReportStrategy;
-            _value = value;
-            _duration = duration;
+            _loanAmount = loan.Amount;
+            _loanDuration = loan.Duration;
         }
 
         public void PrintLoanReport()
         {
-            var amountToReturn = _loanCalculationStrategy.Calculate(_value, _duration);
-            var administrationFee = _administrationFeeStrategy.CalculateFee(_value);
-            _loanReportStrategy.PrintReport(amountToReturn, _duration, administrationFee);
+            var amountToReturn = _loanCalculationStrategy.Calculate(_loanAmount, _loanDuration);
+            var administrationFee = _administrationFeeStrategy.CalculateFee(_loanAmount);
+            _loanReportStrategy.PrintReport(amountToReturn, _loanDuration, administrationFee);
         }
     }
 }

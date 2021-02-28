@@ -22,7 +22,7 @@ namespace DBank.Calculator.Tests
             var args = new Arguments
             {
                 Loan = loan,
-                Duration = duration
+                Years = duration
             };
 
             var validator = new LoanArgumentsValidator();
@@ -38,7 +38,7 @@ namespace DBank.Calculator.Tests
             var args = new Arguments
             {
                 Loan = loan,
-                Duration = duration
+                Years = duration
             };
 
             var validator = new LoanArgumentsValidator();

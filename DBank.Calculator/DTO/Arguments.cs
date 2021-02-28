@@ -4,6 +4,6 @@
     {
         public string Loan { get; set; }
 
-        public string Duration { get; set; }
+        public string Years { get; set; }
     }
 }

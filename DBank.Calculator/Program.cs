@@ -1,4 +1,6 @@
-﻿using DBank.Calculator.DTO;
+﻿using AutoMapper;
+using DBank.Calculator.DTO;
+using DBank.Calculator.Model;
 using DBank.Calculator.Strategies.AdministrationFee;
 using DBank.Calculator.Strategies.LoanCalculation;
 using DBank.Calculator.Strategies.Report;
@@ -23,15 +25,21 @@ namespace DBank.Calculator
                 return;
             }
 
+            IMapper mapper = RegisterMappers();
+
             var calculator = new LoanCalculator(
                 new StandardLoanCalculation(Capitalization.Monthly, 0.05),
                 new StandardAdministrationFee(),
                 new StandardLoanReport(new CultureInfo("da-DK")),
-                decimal.Parse(Arguments.Loan),
-                int.Parse(Arguments.Duration)
-                );
+                mapper.Map<Loan>(Arguments));
 
             calculator.PrintLoanReport();
+        }
+
+        private static IMapper RegisterMappers()
+        {
+            var config = new MapperConfiguration(cfg => cfg.AddMaps(typeof(LoanCalculator)));
+            return config.CreateMapper();
         }
 
         private static void PreprocessArguments(IReadOnlyList<string> args)
@@ -45,7 +53,7 @@ namespace DBank.Calculator
                 Console.WriteLine("Provide loan value:");
                 Arguments.Loan = Console.ReadLine();
                 Console.WriteLine("Provide loan duration:");
-                Arguments.Duration = Console.ReadLine();
+                Arguments.Years = Console.ReadLine();
             }
         }
 
@@ -76,7 +84,7 @@ namespace DBank.Calculator
                         break;
 
                     case "-duration":
-                        Arguments.Duration = args[i++ + 1];
+                        Arguments.Years = args[i++ + 1];
                         break;
 
                     default:

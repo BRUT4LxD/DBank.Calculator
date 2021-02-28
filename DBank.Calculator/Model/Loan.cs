@@ -2,7 +2,7 @@
 {
     public class Loan
     {
-        public decimal LoanAmount { get; set; }
+        public decimal Amount { get; set; }
 
         public int Duration { get; set; }
     }

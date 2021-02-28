@@ -11,7 +11,7 @@ namespace DBank.Calculator.Validators
                 .Must(loan => decimal.TryParse(loan, out var loanValue) && loanValue >= 0)
                 .WithMessage("Invalid Loan value. Loan must be a positive decimal");
 
-            RuleFor(arg => arg.Duration)
+            RuleFor(arg => arg.Years)
                 .Must(duration => int.TryParse(duration, out var durationValue) && durationValue >= 0)
                 .WithMessage("Invalid duration value. Loan must be a positive integer value");
         }
