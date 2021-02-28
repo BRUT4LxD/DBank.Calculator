@@ -2,11 +2,11 @@
 {
     internal class Capitalization
     {
-        public readonly int Months;
+        public readonly int CalculationsInYear;
 
-        private Capitalization(int months)
+        private Capitalization(int calculationsInYear)
         {
-            Months = months;
+            CalculationsInYear = calculationsInYear;
         }
 
         public static Capitalization Monthly => new Capitalization(12);

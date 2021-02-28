@@ -1,4 +1,4 @@
-﻿namespace DBank.Calculator
+﻿namespace DBank.Calculator.Strategies.Report
 {
     internal interface ILoanReportStrategy
     {

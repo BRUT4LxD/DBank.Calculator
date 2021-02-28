@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DBank.Calculator
+namespace DBank.Calculator.Strategies.AdministrationFee
 {
     internal class StandardAdministrationFee : IAdministrationFeeStrategy
     {

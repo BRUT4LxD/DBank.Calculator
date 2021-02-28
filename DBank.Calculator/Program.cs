@@ -1,8 +1,12 @@
-﻿using DBank.Calculator.Validators;
+﻿using DBank.Calculator.DTO;
+using DBank.Calculator.Validators;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DBank.Calculator.Strategies.AdministrationFee;
+using DBank.Calculator.Strategies.LoanCalculation;
+using DBank.Calculator.Strategies.Report;
 
 namespace DBank.Calculator
 {
@@ -81,9 +85,4 @@ namespace DBank.Calculator
             }
         }
     }
-
-    /* TODO:
-    - Terms
-    - Add AutoMapper
-     */
 }

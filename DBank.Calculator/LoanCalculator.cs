@@ -1,4 +1,8 @@
-﻿namespace DBank.Calculator
+﻿using DBank.Calculator.Strategies.AdministrationFee;
+using DBank.Calculator.Strategies.LoanCalculation;
+using DBank.Calculator.Strategies.Report;
+
+namespace DBank.Calculator
 {
     internal class LoanCalculator
     {

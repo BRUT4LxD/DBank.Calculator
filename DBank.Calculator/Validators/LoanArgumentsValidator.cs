@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using DBank.Calculator.DTO;
+using FluentValidation;
 
 namespace DBank.Calculator.Validators
 {

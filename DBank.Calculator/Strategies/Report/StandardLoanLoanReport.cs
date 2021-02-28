@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DBank.Calculator
+namespace DBank.Calculator.Strategies.Report
 {
     internal class StandardLoanLoanReport : ILoanReportStrategy
     {

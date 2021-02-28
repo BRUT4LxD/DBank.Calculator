@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DBank.Calculator
+namespace DBank.Calculator.Strategies.LoanCalculation
 {
     internal class StandardLoanLoanCalculation : ILoanCalculationStrategy
     {
@@ -15,7 +15,7 @@ namespace DBank.Calculator
 
         public decimal Calculate(decimal amount, int years)
         {
-            var growthPerMonth = 1 + _interestRate / _capitalization.Months;
+            var growthPerMonth = 1 + _interestRate / _capitalization.CalculationsInYear;
 
             var overallInstallments = years * Constants.NumberOfMonthsInYear;
             var a = (decimal)Math.Pow(growthPerMonth, overallInstallments);

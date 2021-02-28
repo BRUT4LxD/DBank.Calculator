@@ -1,4 +1,4 @@
-﻿namespace DBank.Calculator
+﻿namespace DBank.Calculator.Strategies.AdministrationFee
 {
     internal interface IAdministrationFeeStrategy
     {

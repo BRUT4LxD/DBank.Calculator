@@ -1,4 +1,5 @@
-﻿using DBank.Calculator.Validators;
+﻿using DBank.Calculator.DTO;
+using DBank.Calculator.Validators;
 using FluentAssertions;
 using NUnit.Framework;
 

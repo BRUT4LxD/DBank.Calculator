@@ -1,4 +1,4 @@
-﻿namespace DBank.Calculator
+﻿namespace DBank.Calculator.DTO
 {
     internal class Arguments
     {
