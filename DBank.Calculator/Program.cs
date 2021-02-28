@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
+using DBank.Calculator.Extensions;
 
 namespace DBank.Calculator
 {
