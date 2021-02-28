@@ -8,6 +8,7 @@ using DBank.Calculator.Validators;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 
@@ -16,24 +17,30 @@ namespace DBank.Calculator
     public static class Program
     {
         private static readonly Arguments Arguments = new Arguments();
+        private static Capitalization _capitalization = Capitalization.Monthly;
+        private static double _interestRate = 0.10;
 
         public static void Main(string[] args)
         {
+            LoadConfig();
             PreprocessArguments(args);
-            if (!ValidArguments(Arguments))
-            {
-                return;
-            }
+            if (!ValidArguments(Arguments)) return;
 
             IMapper mapper = RegisterMappers();
 
             var calculator = new LoanCalculator(
-                new StandardLoanCalculation(Capitalization.Monthly, 0.05),
+                new StandardLoanCalculation(_capitalization, _interestRate),
                 new StandardAdministrationFee(),
                 new StandardLoanReport(new CultureInfo("da-DK")),
                 mapper.Map<Loan>(Arguments));
 
             calculator.PrintLoanReport();
+        }
+
+        private static void LoadConfig()
+        {
+            _capitalization = CapitalizationExtension.GetCapitalizationByName(ConfigurationManager.AppSettings.Get("Capitalization"));
+            _interestRate = double.Parse(ConfigurationManager.AppSettings.Get("InterestRate"));
         }
 
         private static IMapper RegisterMappers()
@@ -52,6 +59,7 @@ namespace DBank.Calculator
             {
                 Console.WriteLine("Provide loan value:");
                 Arguments.Loan = Console.ReadLine();
+
                 Console.WriteLine("Provide loan duration (years):");
                 Arguments.Years = Console.ReadLine();
             }
@@ -79,7 +87,7 @@ namespace DBank.Calculator
             {
                 switch (args[i])
                 {
-                    case "-loan":
+                    case "-amount":
                         Arguments.Loan = args[i++ + 1];
                         break;
 

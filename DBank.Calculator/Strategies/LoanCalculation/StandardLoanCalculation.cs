@@ -15,14 +15,20 @@ namespace DBank.Calculator.Strategies.LoanCalculation
 
         public decimal Calculate(decimal amount, int years)
         {
+            if (_interestRate <= 0) return amount;
+
             var growthPerMonth = 1 + _interestRate / _capitalization.CalculationsInYear;
 
-            var overallInstallments = years * Constants.NumberOfMonthsInYear;
+            //         a       b         c
+            // R = A*(q^n * (q - 1))/(q^n - 1)
+            var overallInstallments = years * _capitalization.CalculationsInYear;
             var a = (decimal)Math.Pow(growthPerMonth, overallInstallments);
             var b = (decimal)growthPerMonth - 1;
             var c = a - 1;
 
             var r = amount * a * b / c;
+
+            Console.WriteLine("To return: " + r * overallInstallments);
 
             return r * overallInstallments;
         }
