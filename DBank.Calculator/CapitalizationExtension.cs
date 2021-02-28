@@ -6,12 +6,11 @@ namespace DBank.Calculator
     {
         internal static Capitalization GetCapitalizationByName(string name)
         {
-            name = name.ToLower();
             return name switch
             {
-                "monthly" => Capitalization.Monthly,
-                "quarterly" => Capitalization.Quarterly,
-                "yearly" => Capitalization.Yearly,
+                nameof(Capitalization.Monthly) => Capitalization.Monthly,
+                nameof(Capitalization.Quarterly) => Capitalization.Quarterly,
+                nameof(Capitalization.Yearly) => Capitalization.Yearly,
                 _ => throw new ArgumentException("Invalid Capitalization")
             };
         }
