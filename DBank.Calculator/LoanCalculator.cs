@@ -30,7 +30,7 @@ namespace DBank.Calculator
         {
             var amountToReturn = _loanCalculationStrategy.Calculate(_loanAmount, _loanDuration);
             var administrationFee = _administrationFeeStrategy.CalculateFee(_loanAmount);
-            _loanReportStrategy.PrintReport(amountToReturn, _loanDuration, administrationFee);
+            _loanReportStrategy.PrintReport(_loanAmount, amountToReturn, _loanDuration, administrationFee);
         }
     }
 }

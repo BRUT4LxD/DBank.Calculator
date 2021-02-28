@@ -12,11 +12,17 @@ namespace DBank.Calculator.Strategies.Report
             _cultureInfo = cultureInfo;
         }
 
-        public void PrintReport(decimal loanAmount, int loanYears, decimal administrationFee)
+        public void PrintReport(decimal loanAmountTaken, decimal loanAmountToReturn, int loanYears, decimal administrationFee)
         {
-            var monthlyInstallment = loanAmount / (loanYears * Constants.NumberOfMonthsInYear);
-            Console.WriteLine("Loan: " + monthlyInstallment.ToString("C", _cultureInfo));
-            Console.WriteLine("Administration fee: " + administrationFee);
+            var monthlyInstallment = loanAmountToReturn / (loanYears * Constants.NumberOfMonthsInYear);
+            var interestRateAmount = loanAmountToReturn - loanAmountTaken;
+            var aop = loanAmountToReturn / (loanYears * loanAmountTaken);
+
+            Console.WriteLine("\n\n****LOAN REPORT****\n\n");
+            Console.WriteLine("ÅOP: " + aop.ToString("P1"));
+            Console.WriteLine("Monthly cost: " + monthlyInstallment.ToString("C", _cultureInfo));
+            Console.WriteLine("Total amount paid in interest rate: " + interestRateAmount.ToString("C", _cultureInfo));
+            Console.WriteLine("Administration fee: " + administrationFee.ToString("C", _cultureInfo));
         }
     }
 }

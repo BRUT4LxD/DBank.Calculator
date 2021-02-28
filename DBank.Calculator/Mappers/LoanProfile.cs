@@ -4,9 +4,9 @@ using DBank.Calculator.Model;
 
 namespace DBank.Calculator.Mappers
 {
-    public class LoanMapper : Profile
+    public class LoanProfile : Profile
     {
-        public LoanMapper()
+        public LoanProfile()
         {
             CreateMap<Arguments, Loan>()
                 .ForMember(dest => dest.Amount, y => y.MapFrom(src => decimal.Parse(src.Loan)))

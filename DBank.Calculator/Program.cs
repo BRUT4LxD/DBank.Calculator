@@ -52,7 +52,7 @@ namespace DBank.Calculator
             {
                 Console.WriteLine("Provide loan value:");
                 Arguments.Loan = Console.ReadLine();
-                Console.WriteLine("Provide loan duration:");
+                Console.WriteLine("Provide loan duration (years):");
                 Arguments.Years = Console.ReadLine();
             }
         }

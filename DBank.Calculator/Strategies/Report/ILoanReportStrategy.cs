@@ -2,6 +2,6 @@
 {
     internal interface ILoanReportStrategy
     {
-        void PrintReport(decimal loanAmount, int loanYears, decimal administrationFee);
+        void PrintReport(decimal loanAmountTaken, decimal loanAmountToReturn, int loanYears, decimal administrationFee);
     }
 }
