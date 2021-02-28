@@ -22,5 +22,5 @@ Administration fee: 5.000,00 kr.
 Loan terms parameters are configurable in `app.config` file.
 Additional parameters that was introduced to the project are:
 - `InterestRate` - value that reflects annual interest rate. Represented as `double`. Sample value `0.05` is represented as 5%
-- `Capitalization` - value that reflects capitalization rate. Capitalization may be: "Monthly", "Qaurterly", "Yearly".  
+- `Capitalization` - value that reflects capitalization rate. Capitalization may be: "Monthly", "Quarterly", "Yearly".  
 
