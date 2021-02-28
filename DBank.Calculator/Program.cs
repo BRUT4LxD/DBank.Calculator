@@ -24,7 +24,7 @@ namespace DBank.Calculator
         {
             LoadConfig();
             PreprocessArguments(args);
-            if (!ValidArguments(Arguments)) return;
+            if (!ValidateArguments(Arguments)) return;
 
             IMapper mapper = RegisterMappers();
 
@@ -65,7 +65,7 @@ namespace DBank.Calculator
             }
         }
 
-        private static bool ValidArguments(Arguments arguments)
+        private static bool ValidateArguments(Arguments arguments)
         {
             var argumentsValidationResults = new LoanArgumentsValidator().Validate(arguments);
             if (argumentsValidationResults.Errors.Any())
