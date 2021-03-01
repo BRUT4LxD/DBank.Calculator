@@ -23,4 +23,7 @@ Loan terms parameters are configurable in `app.config` file.
 Additional parameters that was introduced to the project are:
 - `InterestRate` - value that reflects annual interest rate. Represented as `double`. Sample value `0.05` is represented as 5%
 - `Capitalization` - value that reflects capitalization rate. Capitalization may be: "Monthly", "Quarterly", "Yearly".  
-
+- `Culture` - Culture-Language code. Sample "da-DK" 
+- `LoanCalculationStrategy` - integer value that reflects a way of calculating the loan. `0` is `NoCalculationStrategy`, `1` is `StandardCalculationStrategy`
+- `LoanAdministrationFeeStrategy` - integer value that reflects a way of calculating administration fee. `0` is `NoAdministrationFeeStrategy`, `1` is `StandardAdministrationFeeStrategy`
+- `LoanReportStrategy` - integer value that reflects a way of displaying the reports of the loan. `0` is `NoReportStrategy`, `1` is `StandardReportStrategy`
