@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using DBank.Calculator.DTO;
 using DBank.Calculator.Extensions;
+using DBank.Calculator.Factories;
 using DBank.Calculator.Model;
-using DBank.Calculator.Strategies.AdministrationFee;
-using DBank.Calculator.Strategies.LoanCalculation;
-using DBank.Calculator.Strategies.Report;
 using DBank.Calculator.Validators;
 using FluentValidation.Results;
 using System;
@@ -20,6 +18,10 @@ namespace DBank.Calculator
         private static readonly Arguments Arguments = new Arguments();
         private static Capitalization _capitalization = Capitalization.Monthly;
         private static double _interestRate = 0.10;
+        private static int _calculationStrategy = 0;
+        private static int _administrationFeeStrategy = 0;
+        private static int _reportStrategy = 0;
+        private static CultureInfo _culture = new CultureInfo("da-DK");
 
         public static void Main(string[] args)
         {
@@ -30,9 +32,9 @@ namespace DBank.Calculator
             IMapper mapper = RegisterMappers();
 
             var calculator = new LoanCalculator(
-                new StandardLoanCalculation(_capitalization, _interestRate),
-                new StandardAdministrationFee(),
-                new StandardLoanReport(new CultureInfo("da-DK")),
+                LoanCalculationFactory.GetCalculationStrategy(_calculationStrategy, _capitalization, _interestRate),
+                AdministrationFeeFactory.GetFeeStrategy(_administrationFeeStrategy),
+                LoanReportFactory.GetReportStrategy(_reportStrategy, _culture),
                 mapper.Map<Loan>(Arguments));
 
             calculator.PrintLoanReport();
@@ -40,8 +42,20 @@ namespace DBank.Calculator
 
         private static void LoadConfig()
         {
-            _capitalization = CapitalizationExtension.GetCapitalizationByName(ConfigurationManager.AppSettings.Get("Capitalization"));
-            _interestRate = double.Parse(ConfigurationManager.AppSettings.Get("InterestRate"), CultureInfo.InvariantCulture);
+            try
+            {
+                _capitalization = CapitalizationExtension.GetCapitalizationByName(ConfigurationManager.AppSettings.Get("Capitalization"));
+                _interestRate = double.Parse(ConfigurationManager.AppSettings.Get("InterestRate"), CultureInfo.InvariantCulture);
+                _calculationStrategy = int.Parse(ConfigurationManager.AppSettings.Get("LoanCalculationStrategy"));
+                _administrationFeeStrategy = int.Parse(ConfigurationManager.AppSettings.Get("LoanAdministrationFeeStrategy"));
+                _reportStrategy = int.Parse(ConfigurationManager.AppSettings.Get("LoanReportStrategy"));
+                _culture = new CultureInfo(ConfigurationManager.AppSettings.Get("Culture"));
+            }
+            catch
+            {
+                Console.WriteLine("Invalid configuration provided");
+                throw;
+            }
         }
 
         private static IMapper RegisterMappers()
